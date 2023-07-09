@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className={`${inter.className} min-h-screen`}>
         <Header />
         <Separator />
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );

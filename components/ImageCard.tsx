@@ -13,7 +13,7 @@ export default function ImageCard({
 }) {
   return (
     <div
-      className="w-full inline-block mb-6 cursor-pointer"
+      className="w-full inline-block mb-3 md:mb-6 cursor-pointer"
       onClick={() => selectImage(image.id)}
     >
       <img

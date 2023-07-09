@@ -9,12 +9,12 @@ export default function ImageCard({
   selectImage,
 }: {
   image: ImageType;
-  selectImage: (id: string) => void;
+  selectImage: (img: ImageType) => void;
 }) {
   return (
     <div
       className="w-full inline-block mb-3 md:mb-6 cursor-pointer"
-      onClick={() => selectImage(image.id)}
+      onClick={() => selectImage(image)}
     >
       <img
         src={image.url}

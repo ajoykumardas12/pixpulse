@@ -1,11 +1,12 @@
 import { imageData } from "@/store/data";
 import React from "react";
 import ImageCard from "./ImageCard";
+import { ImageType } from "@/types";
 
 export default function ImageGrid({
   selectImage,
 }: {
-  selectImage: (id: string) => void;
+  selectImage: (image: ImageType) => void;
 }) {
   return (
     <div className="px-6 py-4">

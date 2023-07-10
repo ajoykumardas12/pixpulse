@@ -11,14 +11,6 @@ export default function ImageModal({
   selectImage: (image: ImageType | null) => void;
 }) {
   const modalRef = useRef(null);
-  let x = 0,
-    y = 0;
-  const handleDragEnd = () => {
-    console.log(x, y);
-    if (Math.abs(x) < Math.abs(y)) {
-      selectImage(null);
-    }
-  };
   return (
     <div
       ref={modalRef}
@@ -40,11 +32,7 @@ export default function ImageModal({
           drag
           dragConstraints={modalRef}
           whileDrag={{ scale: 0.9 }}
-          onDrag={(e, info) => {
-            x = info.offset.x;
-            y = info.offset.y;
-          }}
-          onDragEnd={handleDragEnd}
+          onDragEnd={() => selectImage(null)}
         />
       </div>
     </div>

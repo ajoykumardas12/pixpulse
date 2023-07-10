@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageType } from "@/types";
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useRef } from "react";
 
 export default function ImageModal({
   selectedImage,
@@ -10,8 +10,18 @@ export default function ImageModal({
   selectedImage: ImageType;
   selectImage: (image: ImageType | null) => void;
 }) {
+  const modalRef = useRef(null);
+  let x = 0,
+    y = 0;
+  const handleDragEnd = () => {
+    console.log(x, y);
+    if (Math.abs(x) < Math.abs(y)) {
+      selectImage(null);
+    }
+  };
   return (
     <div
+      ref={modalRef}
       className="fixed inset-0 flex justify-center bg-mid/40 p-4"
       onClick={() => selectImage(null)}
     >
@@ -21,13 +31,21 @@ export default function ImageModal({
           e.stopPropagation();
         }}
       >
-        <motion.div layoutId={selectedImage.id}>
-          <img
-            src={selectedImage.url}
-            alt=""
-            className="rounded max-h-[calc(100vh-2rem)]"
-          />
-        </motion.div>
+        <motion.img
+          src={selectedImage.url}
+          alt=""
+          className="rounded max-h-[calc(100vh-2rem)]"
+          layoutId={selectedImage.id}
+          transition={{ duration: 0.2 }}
+          drag
+          dragConstraints={modalRef}
+          whileDrag={{ scale: 0.9 }}
+          onDrag={(e, info) => {
+            x = info.offset.x;
+            y = info.offset.y;
+          }}
+          onDragEnd={handleDragEnd}
+        />
       </div>
     </div>
   );

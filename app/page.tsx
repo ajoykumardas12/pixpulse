@@ -2,6 +2,7 @@
 import ImageGrid from "@/components/ImageGrid";
 import ImageModal from "@/components/ImageModal";
 import { ImageType } from "@/types";
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 export default function Home() {
@@ -15,11 +16,11 @@ export default function Home() {
     }
   };
   return (
-    <div className="">
+    <motion.div className="" layout>
       <ImageGrid selectImage={selectImage} />
       {selectedImage && (
         <ImageModal selectedImage={selectedImage} selectImage={selectImage} />
       )}
-    </div>
+    </motion.div>
   );
 }

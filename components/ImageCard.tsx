@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageType } from "@/types";
-import Image from "next/image";
 import React from "react";
-import { Badge } from "./ui/badge";
 import { motion } from "framer-motion";
 
 export default function ImageCard({
@@ -13,17 +11,16 @@ export default function ImageCard({
   selectImage: (img: ImageType) => void;
 }) {
   return (
-    <motion.div
-      layoutId={image.id}
-      className="w-full inline-block mb-3 md:mb-6 cursor-pointer"
-      onClick={() => selectImage(image)}
-    >
-      <img
+    <div className="w-full inline-block mb-3 md:mb-6 cursor-pointer">
+      <motion.img
         src={image.url}
         alt={image.title}
+        layoutId={image.id}
+        transition={{ duration: 0.2 }}
         loading="lazy"
         className="w-full max-h-96 object-cover rounded"
+        onClick={() => selectImage(image)}
       />
-    </motion.div>
+    </div>
   );
 }

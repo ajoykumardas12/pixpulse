@@ -3,6 +3,7 @@ import { ImageType } from "@/types";
 import Image from "next/image";
 import React from "react";
 import { Badge } from "./ui/badge";
+import { motion } from "framer-motion";
 
 export default function ImageCard({
   image,
@@ -12,7 +13,8 @@ export default function ImageCard({
   selectImage: (img: ImageType) => void;
 }) {
   return (
-    <div
+    <motion.div
+      layoutId={image.id}
       className="w-full inline-block mb-3 md:mb-6 cursor-pointer"
       onClick={() => selectImage(image)}
     >
@@ -22,6 +24,6 @@ export default function ImageCard({
         loading="lazy"
         className="w-full max-h-96 object-cover rounded"
       />
-    </div>
+    </motion.div>
   );
 }

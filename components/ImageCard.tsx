@@ -16,7 +16,7 @@ export default function ImageCard({
         src={image.url}
         alt={image.title}
         layoutId={image.id}
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.3 }}
         loading="lazy"
         className="w-full max-h-96 object-cover rounded"
         onClick={() => selectImage(image)}
